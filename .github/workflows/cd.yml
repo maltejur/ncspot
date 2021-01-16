@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        build_target: [linux, macos]
+        build_target: [linux, macos, windows]
         include:
           - build_target: linux
             os: ubuntu-latest
@@ -23,6 +23,11 @@ jobs:
             artifact_prefix: macos
             target: x86_64-apple-darwin
             features: '--no-default-features --features portaudio_backend,cursive/pancurses-backend'
+          - build_target: windows
+            os: windows-latest
+            artifact_prefix: macos
+            target: x86_64-pc-windows-msvc
+            features: '--no-default-features --features rodio_backend,cursive/pancurses-backend'
     steps:
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
