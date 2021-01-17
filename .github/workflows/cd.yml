@@ -51,8 +51,8 @@ jobs:
         shell: bash
         run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF#refs/tags/})"
         id: extract_tag
-      - name: Packaging assets
-        if: matrix.os != 'ubuntu-latest'
+      - name: Packaging assets (Linux and Mac OS)
+        if: matrix.os != 'windows-latest'
         shell: bash
         run: |
           cd target/${{ matrix.target }}/release
