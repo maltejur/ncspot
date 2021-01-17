@@ -66,7 +66,7 @@ jobs:
           cd target/${{ matrix.target }}/release
           strip ncspot.exe
           mv ncspot.exe ncspot-${{ steps.extract_tag.outputs.tag }}-${{ matrix.artifact_prefix }}.exe
-          shasum -a 256 ncspot-${{ steps.extract_tag.outputs.tag }}-${{ matrix.artifact_prefix }}.exe > ncspot-${{ steps.extract_tag.outputs.tag }}-${{ matrix.artifact_prefix }}.sha256
+          certutil -hashfile ncspot-${{ steps.extract_tag.outputs.tag }}-${{ matrix.artifact_prefix }}.exe sha256 > ncspot-${{ steps.extract_tag.outputs.tag }}-${{ matrix.artifact_prefix }}.sha256
       - name: Releasing assets
         uses: softprops/action-gh-release@v1
         with:
